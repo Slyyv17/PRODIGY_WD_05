@@ -14,7 +14,7 @@ export default {
         pryClr: ["#D5D0D6"],
         secClr: ["#FFBDBD"],
         tetClr: ["#ffffff"],
-        borderClr: ["#87C232"],
+        borderClr: ["#30a5fc"],
         otherClr: ["#F8F9FB"]
       }
     },
