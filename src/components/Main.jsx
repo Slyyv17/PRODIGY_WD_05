@@ -21,10 +21,9 @@ function Main() {
 
   const [userLocation, setUserLocation] = useState(null);
   const [userWeatherData, setUserWeatherData] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(null); // Renamed the state
+  const [errorMessage, setErrorMessage] = useState(null);
 
   useEffect(() => {
-    // Fetch user's geolocation
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const { latitude, longitude } = position.coords;
@@ -39,9 +38,9 @@ function Main() {
 
   useEffect(() => {
     const fetchWeatherData = () => {
-      if (!city) return; // Only fetch data if a city is provided
+      if (!city) return;
 
-      const apiKey = 'a7de75f8cd9fd84efe436943aa953e5c'; // Replace with your actual API key
+      const apiKey = 'a7de75f8cd9fd84efe436943aa953e5c';
       const apiUrl = 'https://api.openweathermap.org/data/2.5/weather';
 
       axios
@@ -65,7 +64,7 @@ function Main() {
             high_temp: main.temp_max,
             low_temp: main.temp_min,
           });
-          setErrorMessage(null); // Clear any previous errors
+          setErrorMessage(null);
         })
         .catch((error) => {
           console.error('Error fetching weather data:', error);
@@ -73,14 +72,14 @@ function Main() {
         });
     };
 
-    fetchWeatherData(); // Call the function to fetch data when `city` changes
+    fetchWeatherData();
   }, [city]);
 
   useEffect(() => {
     const fetchUserWeatherData = () => {
       if (!userLocation) return;
 
-      const apiKey = 'a7de75f8cd9fd84efe436943aa953e5c'; // Replace with your actual API key
+      const apiKey = 'a7de75f8cd9fd84efe436943aa953e5c';
       const apiUrl = 'https://api.openweathermap.org/data/2.5/weather';
 
       axios
@@ -105,7 +104,7 @@ function Main() {
             high_temp: main.temp_max,
             low_temp: main.temp_min,
           });
-          setErrorMessage(null); // Clear any previous errors
+          setErrorMessage(null);
         })
         .catch((error) => {
           console.error('Error fetching weather data for location:', error);
@@ -113,12 +112,12 @@ function Main() {
         });
     };
 
-    fetchUserWeatherData(); // Call the function to fetch weather data based on geolocation
+    fetchUserWeatherData();
   }, [userLocation]);
 
   const handleSearch = () => {
     if (searchQuery) {
-      setCity(searchQuery); // Set the city to trigger the useEffect hook
+      setCity(searchQuery);
     }
   };
 
@@ -147,27 +146,29 @@ function Main() {
         </button>
       </div>
 
-      {/* Toggle button */}
-      <div>
-        <label className='flex items-center space-x-2'>
-          <input
-            type="checkbox"
-            checked={isToggled}
-            onChange={handleToggle}
-            className='w-3 h-3 border form-checkbox border-tetClr-0'
-          />
-          <span className='text-tetClr-0 font-pryFont'> Change tab </span>
-        </label>
+      {/* Tailwind CSS Toggle */}
+      <div className='flex items-center space-x-2'>
+        <div
+          className={`w-10 h-6 flex items-center bg-bgClr-0 rounded-full p-1 cursor-pointer ${isToggled ? 'border border-borderClr-0' : 'border border-borderClr-0'}`}
+          onClick={handleToggle}
+        >
+          <div
+            className={`bg-borderClr-0 w-4 h-4 rounded-full shadow-md transform duration-300 ease-in-out ${isToggled ? 'translate-x-4' : ''}`}
+          ></div>
+        </div>
+        <span className='text-tetClr-0 font-pryFont'>
+          {isToggled ? 'Off' : 'On'}
+        </span>
       </div>
 
       {/* Error Message */}
-      {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+      {errorMessage && <p className="font-bold text-red-500">{errorMessage}</p>}
 
       {/* Area for the weather data */}
       {isToggled ? (
         weatherData.city && (
           <article className='grid grid-cols-2 gap-4 text-center font-pryFont'>
-            <div className="flex items-center justify-center col-span-2 gap-2 text-3xl font-bold text-center text-borderClr-0"><FaMapPin/> {weatherData.city}</div>
+            <div className="flex items-center justify-center col-span-2 gap-2 text-3xl font-bold text-center text-borderClr-0"><FaMapPin /> {weatherData.city}</div>
             <div className='text-xl font-bold'>{weatherData.temperature}°C</div>
             <div className='text-xl font-bold'>{weatherData.time}</div>
             <div className="col-span-2 capitalize">{weatherData.description}</div>
