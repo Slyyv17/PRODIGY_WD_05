@@ -206,8 +206,8 @@ function Main() {
       )}
 
       <footer className='text-sm text-center text-tetClr-0 font-pryFont'>
-        © 2024. Developed by{' '}
-        <a className='text-borderClr-0' target='_blank' rel='noreferrer' href='https://github.com/Slyyv17'>
+        © 2024. Developed by {''}
+        <a className='text-borderClr-0' target='_blank' rel='noreferrer' href='https://victor-dev-gamma.vercel.app/'>
           Victor Ememe
         </a>
       </footer>
