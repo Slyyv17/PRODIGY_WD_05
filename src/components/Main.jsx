@@ -127,14 +127,14 @@ function Main() {
   };
 
   return (
-    <main className='flex flex-col items-center justify-center gap-4 p-4 mx-auto border border-black shadow-lg w-fit h-fit bg-bgClr-0 text-tetClr-0'>
-      <div className='flex flex-row items-center justify-center gap-3 p-1 border-2 border-otherClr-0 w-fit h-fit text-tetClr-0 bg-bgClr-0 rounded-xl'>
+    <main className='flex flex-col items-center justify-center w-full max-w-screen-lg gap-4 p-4 mx-auto border border-black shadow-lg h-fit bg-bgClr-0 text-tetClr-0'>
+      <div className='flex flex-row items-center justify-center w-full max-w-md gap-3 p-1 border-2 border-otherClr-0 h-fit text-tetClr-0 bg-bgClr-0 rounded-xl'>
         <input
           type="search"
           id='search-bar'
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className='h-8 pl-1 text-sm border-none rounded-sm outline-none bg-bgClr-0 w-80 font-pryFont placeholder:text-otherClr-0'
+          className='w-full h-8 pl-1 text-sm border-none rounded-sm outline-none bg-bgClr-0 font-pryFont placeholder:text-otherClr-0'
           placeholder='Search a city...'
         />
         <button
